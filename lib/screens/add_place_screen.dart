@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:place_app/providers/great_places.dart';
 import 'package:place_app/widgets/image_input.dart';
+import 'package:place_app/widgets/location_input.dart';
 import 'package:provider/provider.dart';
 
 class AddPlaceScreen extends StatefulWidget {
@@ -52,14 +53,19 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                   children: <Widget>[
                     TextField(
                       decoration: InputDecoration(
-                        labelText: 'Title',
-                      ),
+                          border: OutlineInputBorder(),
+                          labelText: 'Title',
+                          hintText: 'Enter Title'),
                       controller: _titleController,
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     ImageInput(_selectImage),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    LocationInput(),
                   ],
                 ),
               ),
@@ -67,7 +73,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
           ),
           RaisedButton.icon(
             onPressed: _savePlace,
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.add_business_sharp),
             label: Text('Add Place'),
             elevation: 0,
             materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
