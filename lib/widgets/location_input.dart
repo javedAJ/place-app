@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
-import 'package:path/path.dart';
+//import 'package:path/path.dart';
 import 'package:place_app/helpers/location_helper.dart';
+import 'package:place_app/screens/map_screen.dart';
 
 class LocationInput extends StatefulWidget {
   const LocationInput({Key? key}) : super(key: key);
@@ -24,6 +25,20 @@ class _LocationInputState extends State<LocationInput> {
     });
     //print('latitude : ${locData.latitude}');
     //print('longitude : ${locData.longitude}');
+  }
+
+  Future<void> _selectOnMap() async {
+    final selectedLocation = await Navigator.of(context).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (context) => MapScreen(
+          isSelecting: true,
+        ),
+      ),
+    );
+    if (selectedLocation == null) {
+      return;
+    }
   }
 
   @override
@@ -66,7 +81,7 @@ class _LocationInputState extends State<LocationInput> {
               width: 10,
             ),
             ElevatedButton.icon(
-              onPressed: () {},
+              onPressed: _selectOnMap,
               //color: Theme.of(context).accentColor,
               //textColor: Theme.of(context).primaryColor,
               icon: Icon(Icons.map),

@@ -4,12 +4,12 @@ import 'package:flutter/foundation.dart';
 class PlaceLocation {
   final double latitude;
   final double longitude;
-  final String address;
+  final String? address;
 
-  PlaceLocation({
+  const PlaceLocation({
     required this.latitude,
     required this.longitude,
-    required this.address,
+    this.address,
   });
 }
 
